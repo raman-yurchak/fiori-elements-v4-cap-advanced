@@ -42,7 +42,9 @@ annotate TravelService.Travel with @UI: {
     SelectionFields       : [
         to_Agency_AgencyID,
         to_Customer_CustomerID,
-        TravelStatus_code
+        TravelStatus_code,
+        BeginDate,
+        EndDate
     ],
     LineItem              : [
         {
@@ -72,6 +74,11 @@ annotate TravelService.Travel with @UI: {
             Value            : TravelStatus_code,
             Criticality      : TravelStatus.criticality,
             ![@UI.Importance]: #High
+        },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'TravelService.deductDiscount',
+            Label : '{i18n>DeductDiscount}',
         }
     ],
     Facets                : [
